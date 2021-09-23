@@ -44,3 +44,9 @@
   ```shell
   docker-compose exec bot bash
   ```
+
+- Para ver os containers que estão online, use o comando
+
+  ```shell
+  docker-compose ps
+  ```
