@@ -29,7 +29,7 @@ class Guild(Base):
 
     async def delete(self, async_session):
         async with async_session() as session:
-            session.delete(self)
+            await session.delete(self)
             await session.commit()
 
     async def update(self, async_session):
