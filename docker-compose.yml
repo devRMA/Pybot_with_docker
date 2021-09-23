@@ -1,0 +1,52 @@
+version: '3.9' # Versão do docker-compose
+networks:
+  # Redes que serão criadas
+  database:
+  redis:
+services:
+  # Configurando o banco de dados
+  db:
+    # Vai montar o container usando a imagem do Postgresql
+    image: postgres:13.4
+    volumes:
+      # Definindo o arquivo que será usado para criar o database
+      - ./scripts:/docker-entrypoint-initdb.d
+    networks:
+      # Definindo a rede que o container, irá ter acesso
+      - database
+    # Definindo o usuário e a senha para acessar o banco (pega do .env)
+    environment:
+      POSTGRES_USER: "${DB_USER}"
+      POSTGRES_PASSWORD: "${DB_PASS}"
+  # Configurando o container que ficará rodando o redis
+  cache:
+    # Vai montar o container usando a imagem do redis
+    image: redis:6.2.5
+    networks:
+      # Definindo a rede que o container, irá ter acesso
+      - redis
+  # Configurando o bot
+  bot:
+    # Vai monatr o container, usando a imagem personalizada do bot
+    build: bot
+    working_dir: /usr/src/bot
+    command: main.py
+    networks:
+      - database
+      - redis
+    depends_on:
+      # Dependências para o container do bot iniciar
+      - db
+      - cache
+    volumes:
+      # Definindo o volume com a pasta que o bot irá usar
+      - ./bot:/usr/src/bot
+    # Definindo as variáveis de ambiente do bot
+    environment:
+      TOKEN: "${TOKEN}"
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: pybot
+      DB_USER: "${DB_USER}"
+      DB_PASS: "${DB_PASS}"
+
