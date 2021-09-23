@@ -2,7 +2,7 @@
     Discord Bot feito com Python e docker
 </h1>
 
-## Este repositorio, é um exemplo de bot feito com o discord.py, usando PostgreSQL e Redis.
+## Este repositorio, é um exemplo de bot feito com o discord.py, usando PostgreSQL e Redis e Docker.
 
 ### Requisito para executar o bot
 
