@@ -1,0 +1,6 @@
+SQLAlchemy==1.4.23
+redis==3.5.3
+discord.py@git+https://github.com/Rapptz/discord.py@master
+jishaku@git+https://github.com/Gorialis/jishaku@master
+asyncpg==0.24.0
+stopwatch.py==1.0.1
