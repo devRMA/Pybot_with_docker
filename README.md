@@ -1,17 +1,25 @@
-<h1 align="center">
-    Discord Bot feito com Python e docker
-</h1>
+# Um Bot para o Discord feito com Python e Docker
 
-## Este repositorio, é um exemplo de bot feito com o discord.py, usando PostgreSQL e Redis e Docker.
+## Este repositório, é um exemplo de bot feito com o discord.py, usando PostgreSQL como banco de dados, Redis como cache e Docker
 
 ### Requisito para executar o bot
 
 - [Docker](https://docs.docker.com/engine/install/)
+- [Docker Compose](https://docs.docker.com/compose/install/)
 
 ### Passo a passo para executar o bot
 
-1. Crie o arquivo ``.env`` e copie o conteúdo do arquivo ``.env.example`` para o ``.env``.
-2. Coloque o token do bot, e o id da sua conta no discord.
+1. Crie o arquivo ``.env``
+
+    ```shell
+    # Linux/macOS
+    cp .env.example .env
+
+    # Windows
+    copy .env.example .env
+    ```
+
+2. Coloque o token do bot e o ID da sua conta no ``.env``
 3. Execute o docker compose
 
    ```shell
@@ -23,10 +31,11 @@
 - Para ver os logs do bot, use o comando abaixo
 
   ```shell
-  docker-compose logs -f -t bot
+  docker-compose logs -f -t --no-log-prefix bot
   ```
 
-  (Ou caso queira ver todos os logs, retire o "bot" do final do comando)
+  (Caso queira ver todos os logs, retire o ``--no-log-prefix bot`` do final do comando)
+
 - Para reiniciar o bot, use o comando
 
   ```shell
